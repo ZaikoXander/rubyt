@@ -4,6 +4,7 @@
 
 require_relative 'types/monkey_patching/object'
 require_relative 'types/any'
+require_relative 'types/boolean'
 require_relative 'types/integer_t'
 require_relative 'types/nilable_string'
 require_relative 'types/string_t'
