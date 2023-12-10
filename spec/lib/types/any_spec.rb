@@ -78,14 +78,14 @@ describe Any do
     context 'when value is not Any' do
       it 'raises a RubytTypeError' do
         [
-          ['', 'Expected Any but got String'],
-          [nil, 'Expected Any but got NilClass'],
-          [true, 'Expected Any but got TrueClass'],
-          [false, 'Expected Any but got FalseClass'],
-          [1, 'Expected Any but got Integer'],
-          [1.0, 'Expected Any but got Float'],
-          [{}, 'Expected Any but got Hash'],
-          [[], 'Expected Any but got Array']
+          ['', 'Expected Any but got String instead'],
+          [nil, 'Expected Any but got NilClass instead'],
+          [true, 'Expected Any but got TrueClass instead'],
+          [false, 'Expected Any but got FalseClass instead'],
+          [1, 'Expected Any but got Integer instead'],
+          [1.0, 'Expected Any but got Float instead'],
+          [{}, 'Expected Any but got Hash instead'],
+          [[], 'Expected Any but got Array instead']
         ].each do |value|
           expect { described_class.t value[0] }.to raise_error RubytTypeError, value[1]
         end

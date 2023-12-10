@@ -22,12 +22,12 @@ describe Boolean do
     context 'when value is not a boolean' do
       it 'raises a RubytTypeError' do
         [
-          ['Hello World!', 'Expected TrueClass or FalseClass but got String'],
-          [1, 'Expected TrueClass or FalseClass but got Integer'],
-          [1.0, 'Expected TrueClass or FalseClass but got Float'],
-          [{}, 'Expected TrueClass or FalseClass but got Hash'],
-          [[], 'Expected TrueClass or FalseClass but got Array'],
-          [nil, 'Expected TrueClass or FalseClass but got NilClass']
+          ['Hello World!', 'Expected TrueClass or FalseClass but got String instead'],
+          [1, 'Expected TrueClass or FalseClass but got Integer instead'],
+          [1.0, 'Expected TrueClass or FalseClass but got Float instead'],
+          [{}, 'Expected TrueClass or FalseClass but got Hash instead'],
+          [[], 'Expected TrueClass or FalseClass but got Array instead'],
+          [nil, 'Expected TrueClass or FalseClass but got NilClass instead']
         ].each do |value|
           expect { described_class.new value[0] }.to raise_error RubytTypeError, value[1]
         end
@@ -51,12 +51,12 @@ describe Boolean do
     context 'when value is not a boolean' do
       it 'raises a RubytTypeError' do
         [
-          ['Hello World!', 'Expected TrueClass or FalseClass but got String'],
-          [1, 'Expected TrueClass or FalseClass but got Integer'],
-          [1.0, 'Expected TrueClass or FalseClass but got Float'],
-          [{}, 'Expected TrueClass or FalseClass but got Hash'],
-          [[], 'Expected TrueClass or FalseClass but got Array'],
-          [nil, 'Expected TrueClass or FalseClass but got NilClass']
+          ['Hello World!', 'Expected TrueClass or FalseClass but got String instead'],
+          [1, 'Expected TrueClass or FalseClass but got Integer instead'],
+          [1.0, 'Expected TrueClass or FalseClass but got Float instead'],
+          [{}, 'Expected TrueClass or FalseClass but got Hash instead'],
+          [[], 'Expected TrueClass or FalseClass but got Array instead'],
+          [nil, 'Expected TrueClass or FalseClass but got NilClass instead']
         ].each do |value|
           expect { true_boolean.t = value[0] }.to raise_error RubytTypeError, value[1]
         end
@@ -77,14 +77,14 @@ describe Boolean do
     context 'when value is not a boolean' do
       it 'raises a RubytTypeError' do
         [
-          ['Hello World!', 'Expected Boolean but got String'],
-          [1, 'Expected Boolean but got Integer'],
-          [1.0, 'Expected Boolean but got Float'],
-          [{}, 'Expected Boolean but got Hash'],
-          [[], 'Expected Boolean but got Array'],
-          [nil, 'Expected Boolean but got NilClass'],
-          [true, 'Expected Boolean but got TrueClass'],
-          [false, 'Expected Boolean but got FalseClass']
+          ['Hello World!', 'Expected Boolean but got String instead'],
+          [1, 'Expected Boolean but got Integer instead'],
+          [1.0, 'Expected Boolean but got Float instead'],
+          [{}, 'Expected Boolean but got Hash instead'],
+          [[], 'Expected Boolean but got Array instead'],
+          [nil, 'Expected Boolean but got NilClass instead'],
+          [true, 'Expected Boolean but got TrueClass instead'],
+          [false, 'Expected Boolean but got FalseClass instead']
         ].each do |value|
           expect { described_class.t value[0] }.to raise_error RubytTypeError, value[1]
         end

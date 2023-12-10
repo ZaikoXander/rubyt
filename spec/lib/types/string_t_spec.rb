@@ -27,13 +27,13 @@ describe StringT do
     context 'when value is not an string' do
       it 'raises a RubytTypeError' do
         [
-          [1, 'Expected String but got Integer'],
-          [1.5, 'Expected String but got Float'],
-          [nil, 'Expected String but got NilClass'],
-          [true, 'Expected String but got TrueClass'],
-          [false, 'Expected String but got FalseClass'],
-          [{}, 'Expected String but got Hash'],
-          [[], 'Expected String but got Array']
+          [1, 'Expected String but got Integer instead'],
+          [1.5, 'Expected String but got Float instead'],
+          [nil, 'Expected String but got NilClass instead'],
+          [true, 'Expected String but got TrueClass instead'],
+          [false, 'Expected String but got FalseClass instead'],
+          [{}, 'Expected String but got Hash instead'],
+          [[], 'Expected String but got Array instead']
         ].each do |value|
           expect { described_class.new(value[0]) }.to raise_error RubytTypeError, value[1]
         end
@@ -55,13 +55,13 @@ describe StringT do
     context 'when value is not an string' do
       it 'raises a RubytTypeError' do
         [
-          [1, 'Expected String but got Integer'],
-          [1.5, 'Expected String but got Float'],
-          [nil, 'Expected String but got NilClass'],
-          [true, 'Expected String but got TrueClass'],
-          [false, 'Expected String but got FalseClass'],
-          [{}, 'Expected String but got Hash'],
-          [[], 'Expected String but got Array']
+          [1, 'Expected String but got Integer instead'],
+          [1.5, 'Expected String but got Float instead'],
+          [nil, 'Expected String but got NilClass instead'],
+          [true, 'Expected String but got TrueClass instead'],
+          [false, 'Expected String but got FalseClass instead'],
+          [{}, 'Expected String but got Hash instead'],
+          [[], 'Expected String but got Array instead']
         ].each do |value|
           expect { string_t.t = value[0] }.to raise_error RubytTypeError, value[1]
         end
@@ -82,14 +82,14 @@ describe StringT do
     context 'when value is not an StringT' do
       it 'raises a RubytRubytTypeError' do
         [
-          ['', 'Expected StringT but got String'],
-          [1, 'Expected StringT but got Integer'],
-          [1.5, 'Expected StringT but got Float'],
-          [nil, 'Expected StringT but got NilClass'],
-          [true, 'Expected StringT but got TrueClass'],
-          [false, 'Expected StringT but got FalseClass'],
-          [{}, 'Expected StringT but got Hash'],
-          [[], 'Expected StringT but got Array']
+          ['', 'Expected StringT but got String instead'],
+          [1, 'Expected StringT but got Integer instead'],
+          [1.5, 'Expected StringT but got Float instead'],
+          [nil, 'Expected StringT but got NilClass instead'],
+          [true, 'Expected StringT but got TrueClass instead'],
+          [false, 'Expected StringT but got FalseClass instead'],
+          [{}, 'Expected StringT but got Hash instead'],
+          [[], 'Expected StringT but got Array instead']
         ].each do |value|
           expect { described_class.t value[0] }.to raise_error RubytTypeError, value[1]
         end
