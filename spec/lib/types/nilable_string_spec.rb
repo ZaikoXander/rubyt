@@ -27,12 +27,12 @@ describe NilableString do
     context 'when value is not a nilable string' do
       it 'raises a RubytTypeError' do
         [
-          [true, 'Expected NilClass or String but got TrueClass'],
-          [false, 'Expected NilClass or String but got FalseClass'],
-          [1, 'Expected NilClass or String but got Integer'],
-          [1.0, 'Expected NilClass or String but got Float'],
-          [{}, 'Expected NilClass or String but got Hash'],
-          [[], 'Expected NilClass or String but got Array']
+          [true, 'Expected NilClass or String but got TrueClass instead'],
+          [false, 'Expected NilClass or String but got FalseClass instead'],
+          [1, 'Expected NilClass or String but got Integer instead'],
+          [1.0, 'Expected NilClass or String but got Float instead'],
+          [{}, 'Expected NilClass or String but got Hash instead'],
+          [[], 'Expected NilClass or String but got Array instead']
         ].each do |value|
           expect { described_class.new value }.to raise_error RubytTypeError
         end
@@ -58,12 +58,12 @@ describe NilableString do
     context 'when value is not a nilable string' do
       it 'raises a RubytTypeError' do
         [
-          [true, 'Expected NilClass or String but got TrueClass'],
-          [false, 'Expected NilClass or String but got FalseClass'],
-          [1, 'Expected NilClass or String but got Integer'],
-          [1.0, 'Expected NilClass or String but got Float'],
-          [{}, 'Expected NilClass or String but got Hash'],
-          [[], 'Expected NilClass or String but got Array']
+          [true, 'Expected NilClass or String but got TrueClass instead'],
+          [false, 'Expected NilClass or String but got FalseClass instead'],
+          [1, 'Expected NilClass or String but got Integer instead'],
+          [1.0, 'Expected NilClass or String but got Float instead'],
+          [{}, 'Expected NilClass or String but got Hash instead'],
+          [[], 'Expected NilClass or String but got Array instead']
         ].each do |value|
           expect { no_args_nilable_string.t = value[0] }.to raise_error RubytTypeError, value[1]
         end
@@ -84,14 +84,14 @@ describe NilableString do
     context 'when value is not a nilable string' do
       it 'raises a RubytTypeError' do
         [
-          [true, 'Expected NilableString but got TrueClass'],
-          [false, 'Expected NilableString but got FalseClass'],
-          [1, 'Expected NilableString but got Integer'],
-          [1.0, 'Expected NilableString but got Float'],
-          [{}, 'Expected NilableString but got Hash'],
-          [[], 'Expected NilableString but got Array'],
-          ['', 'Expected NilableString but got String'],
-          [nil, 'Expected NilableString but got NilClass']
+          [true, 'Expected NilableString but got TrueClass instead'],
+          [false, 'Expected NilableString but got FalseClass instead'],
+          [1, 'Expected NilableString but got Integer instead'],
+          [1.0, 'Expected NilableString but got Float instead'],
+          [{}, 'Expected NilableString but got Hash instead'],
+          [[], 'Expected NilableString but got Array instead'],
+          ['', 'Expected NilableString but got String instead'],
+          [nil, 'Expected NilableString but got NilClass instead']
         ].each do |value|
           expect { described_class.t value[0] }.to raise_error RubytTypeError, value[1]
         end
