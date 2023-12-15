@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../../lib/types/integer_t'
+require_relative '../../../lib/types/errors/rubyt_type_error'
 
 describe IntegerT do
   let(:integer_t) { described_class.new(1) }
