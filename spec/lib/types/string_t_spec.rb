@@ -16,7 +16,7 @@ describe StringT do
       end
     end
 
-    context 'when value is an StringT object' do
+    context 'when value is an StringT' do
       it 'instantiates' do
         expect { described_class.new(string_t) }.to_not raise_error
         expect(described_class.new(string_t)).to be_truthy
@@ -80,7 +80,7 @@ describe StringT do
     end
 
     context 'when value is not an StringT' do
-      it 'raises a RubytRubytTypeError' do
+      it 'raises a RubytTypeError' do
         [
           ['', 'Expected StringT but got String instead'],
           [1, 'Expected StringT but got Integer instead'],
