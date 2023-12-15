@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'any'
+require_relative 'errors/rubyt_type_error'
 
 class ArrayT < Any
   class << self
