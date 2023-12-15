@@ -87,8 +87,8 @@ describe Any do
           [1.0, 'Expected Any but got Float instead'],
           [{}, 'Expected Any but got Hash instead'],
           [[], 'Expected Any but got Array instead']
-        ].each do |value|
-          expect { described_class.t value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { described_class.t value }.to raise_error RubytTypeError, error_message
         end
       end
     end

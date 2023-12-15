@@ -33,8 +33,8 @@ describe NilableString do
           [1.0, 'Expected NilClass or String but got Float instead'],
           [{}, 'Expected NilClass or String but got Hash instead'],
           [[], 'Expected NilClass or String but got Array instead']
-        ].each do |value|
-          expect { described_class.new value }.to raise_error RubytTypeError
+        ].each do |value, error_message|
+          expect { described_class.new value }.to raise_error RubytTypeError, error_message
         end
       end
     end
@@ -64,8 +64,8 @@ describe NilableString do
           [1.0, 'Expected NilClass or String but got Float instead'],
           [{}, 'Expected NilClass or String but got Hash instead'],
           [[], 'Expected NilClass or String but got Array instead']
-        ].each do |value|
-          expect { no_args_nilable_string.t = value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { no_args_nilable_string.t = value }.to raise_error RubytTypeError, error_message
         end
       end
     end
@@ -74,7 +74,7 @@ describe NilableString do
   describe '#self.t' do
     context 'when value is a nilable string' do
       it 'returns value' do
-        [described_class.new('Hello World!'), described_class.new(nil), described_class.new].each do |value|
+        [string_nilable_string, nil_nilable_string, no_args_nilable_string].each do |value|
           expect { described_class.t value }.to_not raise_error
           expect(described_class.t(value)).to eq value
         end
@@ -92,8 +92,8 @@ describe NilableString do
           [[], 'Expected NilableString but got Array instead'],
           ['', 'Expected NilableString but got String instead'],
           [nil, 'Expected NilableString but got NilClass instead']
-        ].each do |value|
-          expect { described_class.t value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { described_class.t value }.to raise_error RubytTypeError, error_message
         end
       end
     end

@@ -34,8 +34,8 @@ describe StringT do
           [false, 'Expected String but got FalseClass instead'],
           [{}, 'Expected String but got Hash instead'],
           [[], 'Expected String but got Array instead']
-        ].each do |value|
-          expect { described_class.new(value[0]) }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { described_class.new(value) }.to raise_error RubytTypeError, error_message
         end
       end
     end
@@ -62,8 +62,8 @@ describe StringT do
           [false, 'Expected String but got FalseClass instead'],
           [{}, 'Expected String but got Hash instead'],
           [[], 'Expected String but got Array instead']
-        ].each do |value|
-          expect { string_t.t = value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { string_t.t = value }.to raise_error RubytTypeError, error_message
         end
       end
     end
@@ -72,7 +72,7 @@ describe StringT do
   describe '#self.t' do
     context 'when value is an StringT' do
       it 'returns value' do
-        [string_t, described_class.new(string_t)].each do |value|
+        [string_t, string_t_string_t].each do |value|
           expect { described_class.t value }.to_not raise_error
           expect(described_class.t(value)).to eq value
         end
@@ -90,8 +90,8 @@ describe StringT do
           [false, 'Expected StringT but got FalseClass instead'],
           [{}, 'Expected StringT but got Hash instead'],
           [[], 'Expected StringT but got Array instead']
-        ].each do |value|
-          expect { described_class.t value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { described_class.t value }.to raise_error RubytTypeError, error_message
         end
       end
     end
