@@ -8,7 +8,7 @@ describe False do
   let(:false_t_false_t) { described_class.new(false_t) }
 
   describe '#initialize' do
-    context 'when value is a false' do
+    context 'when value is false' do
       it 'instantiates' do
         expect { described_class.new(false) }.to_not raise_error
         expect(described_class.new(false)).to be_truthy
@@ -24,7 +24,7 @@ describe False do
       end
     end
 
-    context 'when value is not a false' do
+    context 'when value is not false' do
       it 'raises a RubytTypeError' do
         [
           [1, 'Expected FalseClass but got Integer instead'],
@@ -42,7 +42,7 @@ describe False do
   end
 
   describe '#t=' do
-    context 'when value is a false' do
+    context 'when value is false' do
       it 'sets the value' do
         false_t.t = described_class.new(false)
         false_t_false_t.t = false
@@ -52,7 +52,7 @@ describe False do
       end
     end
 
-    context 'when value is not a false' do
+    context 'when value is not false' do
       it 'raises a RubytTypeError' do
         [
           [1, 'Expected FalseClass but got Integer instead'],

@@ -8,7 +8,7 @@ describe Nil do
   let(:nil_t_nil_t) { described_class.new(nil_t) }
 
   describe '#initialize' do
-    context 'when value is a nil' do
+    context 'when value is nil' do
       it 'instantiates' do
         expect { described_class.new(nil) }.to_not raise_error
         expect(described_class.new(nil)).to be_truthy
@@ -24,7 +24,7 @@ describe Nil do
       end
     end
 
-    context 'when value is not a nil' do
+    context 'when value is not nil' do
       it 'raises a RubytTypeError' do
         [
           [1, 'Expected NilClass but got Integer instead'],
@@ -42,7 +42,7 @@ describe Nil do
   end
 
   describe '#t=' do
-    context 'when value is a nil' do
+    context 'when value is nil' do
       it 'sets the value' do
         nil_t.t = described_class.new(nil)
         nil_t_nil_t.t = nil
@@ -52,7 +52,7 @@ describe Nil do
       end
     end
 
-    context 'when value is not a nil' do
+    context 'when value is not nil' do
       it 'raises a RubytTypeError' do
         [
           [1, 'Expected NilClass but got Integer instead'],

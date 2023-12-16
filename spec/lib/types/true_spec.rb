@@ -8,7 +8,7 @@ describe True do
   let(:true_t_true_t) { described_class.new(true_t) }
 
   describe '#initialize' do
-    context 'when value is a true' do
+    context 'when value is true' do
       it 'instantiates' do
         expect { described_class.new(true) }.to_not raise_error
         expect(described_class.new(true)).to be_truthy
@@ -24,7 +24,7 @@ describe True do
       end
     end
 
-    context 'when value is not a true' do
+    context 'when value is not true' do
       it 'raises a RubytTypeError' do
         [
           [1, 'Expected TrueClass but got Integer instead'],
@@ -42,7 +42,7 @@ describe True do
   end
 
   describe '#t=' do
-    context 'when value is a true' do
+    context 'when value is true' do
       it 'sets the value' do
         true_t.t = described_class.new(true)
         true_t_true_t.t = true
@@ -52,7 +52,7 @@ describe True do
       end
     end
 
-    context 'when value is not a true' do
+    context 'when value is not true' do
       it 'raises a RubytTypeError' do
         [
           [1, 'Expected TrueClass but got Integer instead'],
