@@ -16,9 +16,8 @@ describe IntegerT do
       end
     end
 
-    context 'when value is an IntegerT object' do
+    context 'when value is an IntegerT' do
       it 'instantiates' do
-        integer_t = described_class.new(1)
         expect { described_class.new(integer_t) }.to_not raise_error
         expect(described_class.new(integer_t)).to be_truthy
         expect(described_class.new(integer_t)).to be_a described_class
@@ -45,10 +44,10 @@ describe IntegerT do
   describe '#t=' do
     context 'when value is an integer' do
       it 'sets the value' do
-        integer_t.t = 1
-        integer_t_integer_t.t = described_class.new(2)
+        integer_t.t = described_class.new(2)
+        integer_t_integer_t.t = 2
 
-        expect(integer_t.t).to eq 1
+        expect(integer_t.t).to eq 2
         expect(integer_t_integer_t.t).to eq 2
       end
     end
@@ -73,7 +72,7 @@ describe IntegerT do
   describe '#self.t' do
     context 'when value is an IntegerT' do
       it 'returns value' do
-        [integer_t, described_class.new(integer_t)].each do |value|
+        [integer_t, integer_t_integer_t].each do |value|
           expect { described_class.t value }.to_not raise_error
           expect(described_class.t(value)).to eq value
         end
