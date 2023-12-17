@@ -34,5 +34,5 @@ class Nil < Any
 
   public
 
-  def initialize(value) = super(setup_value(value))
+  def initialize(value = nil) = super(setup_value(value))
 end
