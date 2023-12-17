@@ -4,10 +4,19 @@ require_relative '../../../lib/types/nil'
 require_relative '../../../lib/types/errors/rubyt_type_error'
 
 describe Nil do
+  let(:no_args_nil_t) { described_class.new }
   let(:nil_t) { described_class.new(nil) }
   let(:nil_t_nil_t) { described_class.new(nil_t) }
 
   describe '#initialize' do
+    context 'when no value is given' do
+      it 'instantiates' do
+        expect { described_class.new }.to_not raise_error
+        expect(described_class.new).to be_truthy
+        expect(described_class.new).to be_a described_class
+      end
+    end
+
     context 'when value is nil' do
       it 'instantiates' do
         expect { described_class.new(nil) }.to_not raise_error
@@ -44,11 +53,11 @@ describe Nil do
   describe '#t=' do
     context 'when value is nil' do
       it 'sets the value' do
+        no_args_nil_t.t = nil
         nil_t.t = described_class.new(nil)
-        nil_t_nil_t.t = nil
+        nil_t_nil_t.t = described_class.new
 
-        expect(nil_t.t).to eq nil
-        expect(nil_t_nil_t.t).to eq nil
+        expect([no_args_nil_t.t, nil_t.t, nil_t_nil_t.t]).to all(eq(nil))
       end
     end
 
@@ -72,7 +81,7 @@ describe Nil do
   describe '#self.t' do
     context 'when value is a Nil' do
       it 'returns value' do
-        [nil_t, nil_t_nil_t].each do |value|
+        [no_args_nil_t, nil_t, nil_t_nil_t].each do |value|
           expect { described_class.t value }.to_not raise_error
           expect(described_class.t(value)).to eq value
         end
