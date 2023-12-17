@@ -6,7 +6,7 @@ require_relative 'errors/rubyt_type_error'
 class True < Any
   class << self
     def t(value)
-      raise RubytTypeError.new('True', value.class) unless value.is_a? True
+      raise RubytTypeError.new(True, value.class) unless value.is_a? True
 
       value
     end
@@ -14,12 +14,10 @@ class True < Any
 
   private
 
-  def valid_value?(value)
-    value.is_a? TrueClass
-  end
+  def valid_value?(value) = value.is_a? TrueClass
 
   def validate_value(value)
-    raise RubytTypeError.new('TrueClass', value.class) unless valid_value? value
+    raise RubytTypeError.new(TrueClass, value.class) unless valid_value? value
   end
 
   def setup_value(value)
@@ -36,7 +34,5 @@ class True < Any
 
   public
 
-  def initialize(value)
-    super(setup_value(value))
-  end
+  def initialize(value) = super(setup_value(value))
 end

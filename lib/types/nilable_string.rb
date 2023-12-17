@@ -6,7 +6,7 @@ require_relative 'errors/rubyt_type_error'
 class NilableString < Any
   class << self
     def t(value)
-      raise RubytTypeError.new('NilableString', value.class) unless value.is_a? NilableString
+      raise RubytTypeError.new(NilableString, value.class) unless value.is_a? NilableString
 
       value
     end
@@ -37,11 +37,5 @@ class NilableString < Any
 
   public
 
-  def initialize(value = nil)
-    super(setup_value(value))
-  end
-
-  def t=(value)
-    @value = setup_value(value)
-  end
+  def initialize(value = nil) = super(setup_value(value))
 end

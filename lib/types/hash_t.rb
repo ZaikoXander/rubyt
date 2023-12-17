@@ -6,7 +6,7 @@ require_relative 'errors/rubyt_type_error'
 class HashT < Any
   class << self
     def t(value)
-      raise RubytTypeError.new('HashT', value.class) unless value.is_a? HashT
+      raise RubytTypeError.new(HashT, value.class) unless value.is_a? HashT
 
       value
     end
@@ -14,12 +14,10 @@ class HashT < Any
 
   private
 
-  def valid_value?(value)
-    value.is_a? Hash
-  end
+  def valid_value?(value) = value.is_a? Hash
 
   def validate_value(value)
-    raise RubytTypeError.new('Hash', value.class) unless valid_value? value
+    raise RubytTypeError.new(Hash, value.class) unless valid_value? value
   end
 
   def setup_value(value)
@@ -36,7 +34,5 @@ class HashT < Any
 
   public
 
-  def initialize(value)
-    super(setup_value(value))
-  end
+  def initialize(value) = super(setup_value(value))
 end

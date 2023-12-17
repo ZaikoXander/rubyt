@@ -5,7 +5,7 @@ require_relative 'errors/rubyt_type_error'
 class Any
   class << self
     def t(value)
-      raise RubytTypeError.new('Any', value.class) unless value.is_a? Any
+      raise RubytTypeError.new(Any, value.class) unless value.is_a? Any
 
       value
     end
@@ -31,19 +31,13 @@ class Any
 
   public
 
-  def initialize(value = nil)
-    @value = setup_value(value)
-  end
+  def initialize(value = nil) = @value = setup_value(value)
 
-  def t
-    @value
-  end
+  def t = @value
 
   def t=(value)
     @value = setup_value(value)
   end
 
-  def to_s
-    @value.to_s
-  end
+  def to_s = @value.to_s
 end

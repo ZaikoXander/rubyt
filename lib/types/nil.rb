@@ -6,7 +6,7 @@ require_relative 'errors/rubyt_type_error'
 class Nil < Any
   class << self
     def t(value)
-      raise RubytTypeError.new('Nil', value.class) unless value.is_a? Nil
+      raise RubytTypeError.new(Nil, value.class) unless value.is_a? Nil
 
       value
     end
@@ -14,12 +14,10 @@ class Nil < Any
 
   private
 
-  def valid_value?(value)
-    value.is_a? NilClass
-  end
+  def valid_value?(value) = value.is_a? NilClass
 
   def validate_value(value)
-    raise RubytTypeError.new('NilClass', value.class) unless valid_value? value
+    raise RubytTypeError.new(NilClass, value.class) unless valid_value? value
   end
 
   def setup_value(value)
@@ -36,7 +34,5 @@ class Nil < Any
 
   public
 
-  def initialize(value)
-    super(setup_value(value))
-  end
+  def initialize(value) = super(setup_value(value))
 end

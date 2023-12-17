@@ -6,7 +6,7 @@ require_relative 'errors/rubyt_type_error'
 class FloatT < Any
   class << self
     def t(value)
-      raise RubytTypeError.new('FloatT', value.class) unless value.is_a? FloatT
+      raise RubytTypeError.new(FloatT, value.class) unless value.is_a? FloatT
 
       value
     end
@@ -14,12 +14,10 @@ class FloatT < Any
 
   private
 
-  def valid_value?(value)
-    value.is_a? Float
-  end
+  def valid_value?(value) = value.is_a? Float
 
   def validate_value(value)
-    raise RubytTypeError.new('Float', value.class) unless valid_value? value
+    raise RubytTypeError.new(Float, value.class) unless valid_value? value
   end
 
   def setup_value(value)
@@ -36,7 +34,5 @@ class FloatT < Any
 
   public
 
-  def initialize(value)
-    super(setup_value(value))
-  end
+  def initialize(value) = super(setup_value(value))
 end
