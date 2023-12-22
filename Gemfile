@@ -2,12 +2,11 @@
 
 source 'https://rubygems.org'
 
-gem 'guard'
-gem 'guard-rspec'
-gem 'guard-shell'
-gem 'rspec'
-
 group :development, :test do
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-shell'
+  gem 'rspec'
   gem 'rubocop', require: false
 end
 
