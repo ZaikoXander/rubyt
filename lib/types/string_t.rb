@@ -1,14 +1,23 @@
 # frozen_string_literal: true
 
 require_relative 'any'
+require_relative 'array_t'
 require_relative 'errors/rubyt_type_error'
 
 class StringT < Any
   class << self
-    def t(value)
-      raise RubytTypeError.new(StringT, value.class) unless value.is_a? StringT
+    def t(*values)
+      validated_values = ArrayT.new(
+        values.map do |value|
+          raise RubytTypeError.new(StringT, value.class) unless value.is_a? StringT
 
-      value
+          value
+        end
+      )
+
+      return validated_values.t.first if validated_values.t.length == 1
+
+      validated_values
     end
   end
 
