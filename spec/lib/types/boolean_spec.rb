@@ -28,8 +28,8 @@ describe Boolean do
           [{}, 'Expected TrueClass or FalseClass but got Hash instead'],
           [[], 'Expected TrueClass or FalseClass but got Array instead'],
           [nil, 'Expected TrueClass or FalseClass but got NilClass instead']
-        ].each do |value|
-          expect { described_class.new value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { described_class.new value }.to raise_error RubytTypeError, error_message
         end
       end
     end
@@ -57,8 +57,8 @@ describe Boolean do
           [{}, 'Expected TrueClass or FalseClass but got Hash instead'],
           [[], 'Expected TrueClass or FalseClass but got Array instead'],
           [nil, 'Expected TrueClass or FalseClass but got NilClass instead']
-        ].each do |value|
-          expect { true_boolean.t = value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { true_boolean.t = value }.to raise_error RubytTypeError, error_message
         end
       end
     end
@@ -85,8 +85,8 @@ describe Boolean do
           [nil, 'Expected Boolean but got NilClass instead'],
           [true, 'Expected Boolean but got TrueClass instead'],
           [false, 'Expected Boolean but got FalseClass instead']
-        ].each do |value|
-          expect { described_class.t value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { described_class.t value }.to raise_error RubytTypeError, error_message
         end
       end
     end

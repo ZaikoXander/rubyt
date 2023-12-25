@@ -3,10 +3,10 @@
 require_relative 'any'
 require_relative 'errors/rubyt_type_error'
 
-class IntegerT < Any
+class ArrayT < Any
   class << self
     def t(value)
-      raise RubytTypeError.new(IntegerT, value.class) unless value.is_a? IntegerT
+      raise RubytTypeError.new(ArrayT, value.class) unless value.is_a? ArrayT
 
       value
     end
@@ -14,14 +14,14 @@ class IntegerT < Any
 
   private
 
-  def valid_value?(value) = value.is_a? Integer
+  def valid_value?(value) = value.is_a? Array
 
   def validate_value(value)
-    raise RubytTypeError.new(Integer, value.class) unless valid_value? value
+    raise RubytTypeError.new(Array, value.class) unless valid_value? value
   end
 
   def setup_value(value)
-    if value.is_a? IntegerT
+    if value.is_a? ArrayT
       validate_value(value.t)
 
       return value.t
@@ -35,4 +35,12 @@ class IntegerT < Any
   public
 
   def initialize(value) = super(setup_value(value))
+
+  def ==(other)
+    other.is_a?(ArrayT) && other.t == @value
+  end
+
+  def !=(other)
+    !(other.is_a?(ArrayT) && other.t == @value)
+  end
 end

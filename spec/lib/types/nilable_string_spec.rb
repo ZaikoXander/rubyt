@@ -10,14 +10,28 @@ describe NilableString do
   let(:nilable_string_nilable_string) { described_class.new string_nilable_string }
 
   describe '#initialize' do
-    context 'when value is a nilable string' do
+    context 'when no value is given' do
       it 'instantiates' do
         expect { described_class.new }.to_not raise_error
         expect(described_class.new).to be_truthy
         expect(described_class.new).to be_a described_class
+      end
+    end
 
-        ['Hello World!', nil, string_nilable_string].each do |value|
+    context 'when value is a nilable string' do
+      it 'instantiates' do
+        ['Hello World!', nil].each do |value|
           expect { described_class.new value }.to_not raise_error
+          expect(described_class.new(value)).to be_truthy
+          expect(described_class.new(value)).to be_a described_class
+        end
+      end
+    end
+
+    context 'when value is a NilableString' do
+      it 'instantiates' do
+        [no_args_nilable_string, string_nilable_string, nil_nilable_string].each do |value|
+          expect { described_class.new(value) }.to_not raise_error
           expect(described_class.new(value)).to be_truthy
           expect(described_class.new(value)).to be_a described_class
         end
@@ -33,8 +47,8 @@ describe NilableString do
           [1.0, 'Expected NilClass or String but got Float instead'],
           [{}, 'Expected NilClass or String but got Hash instead'],
           [[], 'Expected NilClass or String but got Array instead']
-        ].each do |value|
-          expect { described_class.new value }.to raise_error RubytTypeError
+        ].each do |value, error_message|
+          expect { described_class.new value }.to raise_error RubytTypeError, error_message
         end
       end
     end
@@ -43,15 +57,12 @@ describe NilableString do
   describe '#t=' do
     context 'when value is a nilable string' do
       it 'sets the value' do
-        no_args_nilable_string.t = 'Hello World!'
+        [no_args_nilable_string, nil_nilable_string].each { |value| value.t = 'Hello World!' }
         string_nilable_string.t = nil
-        nil_nilable_string.t = 'Hello World!'
         nilable_string_nilable_string.t = string_nilable_string
 
-        expect(no_args_nilable_string.t).to eq 'Hello World!'
-        expect(string_nilable_string.t).to be_nil
-        expect(nil_nilable_string.t).to eq 'Hello World!'
-        expect(nilable_string_nilable_string.t).to be_nil
+        expect([no_args_nilable_string.t, nil_nilable_string.t]).to all(eq('Hello World!'))
+        expect([string_nilable_string.t, nilable_string_nilable_string.t]).to all(be_nil)
       end
     end
 
@@ -64,8 +75,8 @@ describe NilableString do
           [1.0, 'Expected NilClass or String but got Float instead'],
           [{}, 'Expected NilClass or String but got Hash instead'],
           [[], 'Expected NilClass or String but got Array instead']
-        ].each do |value|
-          expect { no_args_nilable_string.t = value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { no_args_nilable_string.t = value }.to raise_error RubytTypeError, error_message
         end
       end
     end
@@ -74,7 +85,7 @@ describe NilableString do
   describe '#self.t' do
     context 'when value is a nilable string' do
       it 'returns value' do
-        [described_class.new('Hello World!'), described_class.new(nil), described_class.new].each do |value|
+        [string_nilable_string, nil_nilable_string, no_args_nilable_string].each do |value|
           expect { described_class.t value }.to_not raise_error
           expect(described_class.t(value)).to eq value
         end
@@ -92,8 +103,8 @@ describe NilableString do
           [[], 'Expected NilableString but got Array instead'],
           ['', 'Expected NilableString but got String instead'],
           [nil, 'Expected NilableString but got NilClass instead']
-        ].each do |value|
-          expect { described_class.t value[0] }.to raise_error RubytTypeError, value[1]
+        ].each do |value, error_message|
+          expect { described_class.t value }.to raise_error RubytTypeError, error_message
         end
       end
     end
