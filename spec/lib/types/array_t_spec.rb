@@ -6,6 +6,7 @@ require_relative '../../../lib/types/errors/rubyt_type_error'
 describe ArrayT do
   let(:array_t) { described_class.new([1]) }
   let(:array_t_array_t) { described_class.new(array_t) }
+  let(:invalid_values) { ['', 1, 1.5, nil, true, false, {}, []] }
 
   describe '#initialize' do
     context 'when value is an array' do
@@ -64,6 +65,54 @@ describe ArrayT do
           [{}, 'Expected Array but got Hash instead']
         ].each do |value, error_message|
           expect { array_t.t = value }.to raise_error RubytTypeError, error_message
+        end
+      end
+    end
+  end
+
+  describe '#==' do
+    context 'when other is a ArrayT' do
+      context 'when values are equal' do
+        it 'returns true' do
+          expect(array_t == described_class.new([1])).to be true
+        end
+      end
+
+      context 'when values are not equal' do
+        it 'returns false' do
+          expect(array_t == described_class.new([])).to be false
+        end
+      end
+    end
+
+    context 'when other is not a ArrayT' do
+      it 'returns false' do
+        invalid_values.each do |value|
+          expect(array_t == value).to be false
+        end
+      end
+    end
+  end
+
+  describe '#!=' do
+    context 'when other is a ArrayT' do
+      context 'when values are equal' do
+        it 'returns false' do
+          expect(array_t != described_class.new([1])).to be false
+        end
+      end
+
+      context 'when values are not equal' do
+        it 'returns true' do
+          expect(array_t != described_class.new([])).to be true
+        end
+      end
+    end
+
+    context 'when other is not a ArrayT' do
+      it 'returns true' do
+        invalid_values.each do |value|
+          expect(array_t != value).to be true
         end
       end
     end
