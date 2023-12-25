@@ -35,4 +35,12 @@ class StringT < Any
   public
 
   def initialize(value) = super(setup_value(value))
+
+  def ==(other)
+    other.is_a?(StringT) && other.t == @value
+  end
+
+  def !=(other)
+    !(other.is_a?(StringT) && other.t == @value)
+  end
 end
