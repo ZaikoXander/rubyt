@@ -35,4 +35,12 @@ class ArrayT < Any
   public
 
   def initialize(value) = super(setup_value(value))
+
+  def ==(other)
+    other.is_a?(ArrayT) && other.t == @value
+  end
+
+  def !=(other)
+    !(other.is_a?(ArrayT) && other.t == @value)
+  end
 end
