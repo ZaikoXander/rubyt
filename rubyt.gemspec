@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.summary     = 'A ruby type checking gem'
   s.description = 'A ruby type checking gem'
   s.authors     = ['ZaikoXander']
-  s.email       = 'alexdaniel.lima28@gmail.com'
   s.files       = Dir['lib/**/*']
   s.homepage    = 'https://github.com/ZaikoXander/rubyt'
   s.license     = 'MIT'
