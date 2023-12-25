@@ -6,6 +6,7 @@ require_relative '../../../lib/types/errors/rubyt_type_error'
 describe StringT do
   let(:string_t) { described_class.new('') }
   let(:string_t_string_t) { described_class.new(string_t) }
+  let(:invalid_values) { ['', 1, 1.5, nil, true, false, {}, []] }
 
   describe '#initialize' do
     context 'when value is an string' do
@@ -64,6 +65,54 @@ describe StringT do
           [[], 'Expected String but got Array instead']
         ].each do |value, error_message|
           expect { string_t.t = value }.to raise_error RubytTypeError, error_message
+        end
+      end
+    end
+  end
+
+  describe '#==' do
+    context 'when other is a StringT' do
+      context 'when values are equal' do
+        it 'returns true' do
+          expect(string_t == described_class.new('')).to be true
+        end
+      end
+
+      context 'when values are not equal' do
+        it 'returns false' do
+          expect(string_t == described_class.new('hello')).to be false
+        end
+      end
+    end
+
+    context 'when other is not a StringT' do
+      it 'returns false' do
+        invalid_values.each do |value|
+          expect(string_t == value).to be false
+        end
+      end
+    end
+  end
+
+  describe '#!=' do
+    context 'when other is a StringT' do
+      context 'when values are equal' do
+        it 'returns false' do
+          expect(string_t != described_class.new('')).to be false
+        end
+      end
+
+      context 'when values are not equal' do
+        it 'returns true' do
+          expect(string_t != described_class.new('hello')).to be true
+        end
+      end
+    end
+
+    context 'when other is not a StringT' do
+      it 'returns true' do
+        invalid_values.each do |value|
+          expect(string_t != value).to be true
         end
       end
     end
